@@ -17,6 +17,8 @@ import javax.validation.constraints.Size;
 @Table(name = "inscricoes")
 public class Inscricao{
 
+	public static final int MAX_CREDITOS = 10;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
