@@ -4,23 +4,19 @@ import java.util.List;
  
 public class ValidationErrorDTO {
  
-    private List<FieldErrorDTO> fieldErrors = new ArrayList<>();
- 
-    public ValidationErrorDTO() {
- 
+    private List<ObjectErrorDTO> objectErrors = new ArrayList<>();
+    
+    public void addObjectError(String message) {
+    	ObjectErrorDTO error = new ObjectErrorDTO(message);
+    	objectErrors.add(error);
     }
  
-    public void addFieldError(String path, String message) {
-        FieldErrorDTO error = new FieldErrorDTO(path, message);
-        fieldErrors.add(error);
-    }
-
-	public List<FieldErrorDTO> getFieldErrors() {
-		return fieldErrors;
+	public List<ObjectErrorDTO> getObjectErrors() {
+		return objectErrors;
 	}
 
-	public void setFieldErrors(List<FieldErrorDTO> fieldErrors) {
-		this.fieldErrors = fieldErrors;
+	public void setObjectErrors(List<ObjectErrorDTO> objectErrors) {
+		this.objectErrors = objectErrors;
 	}
  
     

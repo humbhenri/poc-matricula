@@ -30,7 +30,7 @@ public class InscricaoValidator implements Validator {
 	private void validaDisciplinasFeitas(Inscricao inscricao, Errors errors) {
 		inscricao.getDisciplinas().forEach(disciplina -> {
 			if (!inscricao.getAluno().getDisciplinasFeitas().containsAll(disciplina.getRequisitos())) {
-				errors.rejectValue("disciplinas", null, "A disciplina " + disciplina.getId() + 
+				errors.reject(null, "A disciplina " + disciplina.getId() + 
 						" não pode ser feita agora porque ela tem requisitos ainda não satisfeitos: " +
 						disciplina.getRequisitos().stream().map(Disciplina::getId).collect(Collectors.joining(", ")));
 			}
