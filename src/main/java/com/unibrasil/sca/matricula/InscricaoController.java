@@ -1,7 +1,6 @@
 package com.unibrasil.sca.matricula;
 
 import java.net.URI;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,9 +24,9 @@ public class InscricaoController {
 
 	private final Logger logger = LoggerFactory.getLogger(InscricaoController.class);
 
-	@RequestMapping(method = RequestMethod.GET)
-	List<Inscricao> get(@PathVariable String username) {
-		return repo.findByAluno_Username(username);
+	@RequestMapping(path="/{username}", method = RequestMethod.GET)
+	Inscricao get(@PathVariable String username) {
+		return repo.findFirstByAluno_Username(username);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -57,7 +56,7 @@ public class InscricaoController {
 	@RequestMapping(path = "/{inscricaoId}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> deleteById(@PathVariable int inscricaoId) {
 		try {
-			repo.deleteById(inscricaoId);
+			repo.delete(inscricaoId);
 			return ResponseEntity.noContent().build();
 		} catch (ResourceNotFoundException e) {
 			return ResponseEntity.notFound().build();
