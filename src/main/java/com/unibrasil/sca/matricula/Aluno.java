@@ -27,7 +27,7 @@ public class Aluno {
 	@JoinTable(name="alunos_disciplinas", 
     joinColumns=@JoinColumn(name="id_aluno"),
     inverseJoinColumns=@JoinColumn(name="id_disciplina"))
-	private Set<Disciplina> disciplinasFeitas = null;
+	private Set<Disciplina> disciplinasFeitas;
 
 	public int getId() {
 		return id;
@@ -51,6 +51,14 @@ public class Aluno {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public Set<Disciplina> getDisciplinasFeitas() {
+		return disciplinasFeitas;
+	}
+
+	public void setDisciplinasFeitas(Set<Disciplina> disciplinasFeitas) {
+		this.disciplinasFeitas = disciplinasFeitas;
 	}
 	
 	
