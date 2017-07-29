@@ -11,6 +11,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "inscricoes")
@@ -26,6 +27,7 @@ public class Inscricao{
 
 	@ManyToMany
 	@JoinTable(name = "inscricoes_disciplinas", joinColumns = @JoinColumn(name = "id_inscricao"), inverseJoinColumns = @JoinColumn(name = "id_disciplina"))
+	@Size(min=1, message="É preciso no mínimo uma disciplina")
 	private Set<Disciplina> disciplinas;
 
 	public int getId() {

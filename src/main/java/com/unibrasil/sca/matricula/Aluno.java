@@ -6,7 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,9 +22,12 @@ public class Aluno {
 	private String nome;
 	
 	private String username;
-	
-	@OneToMany(mappedBy="id")
-	private Set<Inscricao> inscricoes;
+
+	@ManyToMany
+	@JoinTable(name="alunos_disciplinas", 
+    joinColumns=@JoinColumn(name="id_aluno"),
+    inverseJoinColumns=@JoinColumn(name="id_disciplina"))
+	private Set<Disciplina> disciplinasFeitas = null;
 
 	public int getId() {
 		return id;
