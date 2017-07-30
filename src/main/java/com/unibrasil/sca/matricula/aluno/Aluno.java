@@ -1,4 +1,4 @@
-package com.unibrasil.sca.matricula;
+package com.unibrasil.sca.matricula.aluno;
 
 import java.util.Set;
 
@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.unibrasil.sca.matricula.disciplina.Disciplina;
 
 @Entity
 @Table(name="alunos")

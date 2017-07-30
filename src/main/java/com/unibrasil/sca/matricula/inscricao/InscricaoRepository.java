@@ -1,4 +1,4 @@
-package com.unibrasil.sca.matricula;
+package com.unibrasil.sca.matricula.inscricao;
 
 import java.util.List;
 

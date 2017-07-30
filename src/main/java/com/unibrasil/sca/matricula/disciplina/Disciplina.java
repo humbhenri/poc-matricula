@@ -1,4 +1,4 @@
-package com.unibrasil.sca.matricula;
+package com.unibrasil.sca.matricula.disciplina;
 
 import java.util.Set;
 

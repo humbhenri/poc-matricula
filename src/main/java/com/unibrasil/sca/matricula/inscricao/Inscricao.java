@@ -1,4 +1,4 @@
-package com.unibrasil.sca.matricula;
+package com.unibrasil.sca.matricula.inscricao;
 
 import java.util.Set;
 
@@ -12,6 +12,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+
+import com.unibrasil.sca.matricula.aluno.Aluno;
+import com.unibrasil.sca.matricula.turma.Turma;
 
 @Entity
 @Table(name = "inscricoes")
@@ -28,9 +31,9 @@ public class Inscricao{
 	private Aluno aluno;
 
 	@ManyToMany
-	@JoinTable(name = "inscricoes_disciplinas", joinColumns = @JoinColumn(name = "id_inscricao"), inverseJoinColumns = @JoinColumn(name = "id_disciplina"))
-	@Size(min=1, message="É preciso no mínimo uma disciplina")
-	private Set<Disciplina> disciplinas;
+	@JoinTable(name = "inscricoes_turmas", joinColumns = @JoinColumn(name = "id_inscricao"), inverseJoinColumns = @JoinColumn(name = "id_turma"))
+	@Size(min=1, message="É preciso no mínimo uma turma")
+	private Set<Turma> turmas;
 
 	public int getId() {
 		return id;
@@ -48,12 +51,12 @@ public class Inscricao{
 		this.aluno = aluno;
 	}
 
-	public Set<Disciplina> getDisciplinas() {
-		return disciplinas;
+	public Set<Turma> getTurmas() {
+		return turmas;
 	}
 
-	public void setDisciplinas(Set<Disciplina> disciplinas) {
-		this.disciplinas = disciplinas;
+	public void setTurmas(Set<Turma> turmas) {
+		this.turmas = turmas;
 	}
-	
+
 }
