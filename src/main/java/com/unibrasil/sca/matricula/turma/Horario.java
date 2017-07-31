@@ -8,8 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-
 @Entity
 @Table(name="horarios")
 public class Horario {
@@ -46,11 +44,6 @@ public class Horario {
 
 	public void setDia(Dia dia) {
 		this.dia = dia;
-	}
-
-	@JsonGetter("dia")
-	public String getNomeDia() {
-		return this.dia.getNome();
 	}
 
 }

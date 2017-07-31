@@ -12,7 +12,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
 import com.unibrasil.sca.matricula.disciplina.Disciplina;
 
 @Entity
@@ -71,11 +70,6 @@ public class Turma {
 	}
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
-	}
-	
-	@JsonGetter("professor")
-	public String getProfessorNome() {
-		return this.getProfessor().getNome();
 	}
 	public Set<Horario> getHorarios() {
 		return horarios;
