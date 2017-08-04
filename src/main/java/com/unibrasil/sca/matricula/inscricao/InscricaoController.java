@@ -23,53 +23,53 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RequestMapping("/inscricao")
 public class InscricaoController {
 
-	@Autowired
-	private InscricaoRepository repo;
+    @Autowired
+    private InscricaoRepository repo;
 
-	private final Logger logger = LoggerFactory.getLogger(InscricaoController.class);
+    private final Logger logger = LoggerFactory.getLogger(InscricaoController.class);
 
-	@RequestMapping(path="/{username}", method = RequestMethod.GET)
-	Inscricao get(@PathVariable String username) {
-		return repo.findFirstByAluno_Username(username);
-	}
+    @RequestMapping(path = "/{username}", method = RequestMethod.GET)
+    Inscricao get(@PathVariable String username) {
+        return repo.findFirstByAluno_Username(username);
+    }
 
-	@RequestMapping(method = RequestMethod.POST)
-	ResponseEntity<?> add(@Valid @RequestBody Inscricao inscricao) {
-		try {
-			Inscricao result = repo.save(inscricao);
-			URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(result.getId())
-					.toUri();
-			return ResponseEntity.created(location).build();
-		} catch (Exception e) {
-			logger.debug(e.getMessage());
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
-	}
+    @RequestMapping(method = RequestMethod.POST)
+    ResponseEntity<?> add(@Valid @RequestBody Inscricao inscricao) {
+        try {
+            Inscricao result = repo.save(inscricao);
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(result.getId())
+                    .toUri();
+            return ResponseEntity.created(location).build();
+        } catch (Exception e) {
+            logger.debug(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 
-	@RequestMapping(path = "/{inscricaoId}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> updateExist(@RequestBody Inscricao inscricao, @PathVariable int inscricaoId) {
-		try {
-			inscricao.setId(inscricaoId);
-			repo.save(inscricao);
-			return ResponseEntity.noContent().build();
-		} catch (ResourceNotFoundException e) {
-			return ResponseEntity.notFound().build();
-		}
-	}
+    @RequestMapping(path = "/{inscricaoId}", method = RequestMethod.PUT)
+    public ResponseEntity<Void> updateExist(@RequestBody Inscricao inscricao, @PathVariable int inscricaoId) {
+        try {
+            inscricao.setId(inscricaoId);
+            repo.save(inscricao);
+            return ResponseEntity.noContent().build();
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
-	@RequestMapping(path = "/{inscricaoId}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteById(@PathVariable int inscricaoId) {
-		try {
-			repo.delete(inscricaoId);
-			return ResponseEntity.noContent().build();
-		} catch (ResourceNotFoundException e) {
-			return ResponseEntity.notFound().build();
-		}
-	}
-	
-	@InitBinder
-	protected void initBinder(WebDataBinder binder) {
-		binder.addValidators(new InscricaoValidator());
-	}
-	
+    @RequestMapping(path = "/{inscricaoId}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteById(@PathVariable int inscricaoId) {
+        try {
+            repo.delete(inscricaoId);
+            return ResponseEntity.noContent().build();
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        binder.addValidators(new InscricaoValidator());
+    }
+
 }
