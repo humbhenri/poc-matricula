@@ -1,7 +1,10 @@
-FROM openjdk:8-jdk-alpine
+FROM picoded/ubuntu-openjdk-8-jdk
 MAINTAINER Humberto Pinheiro <humbhenri@gmail.com>
 VOLUME /tmp
 ADD target/matricula-0.0.1-SNAPSHOT.jar /app.jar
 RUN sh -c 'touch /app.jar'
-ENTRYPOINT ["java","-Xmx100M", "-jar","/app.jar", "--server.port=8080"]
+ADD wait.sh /wait.sh
+RUN chmod +x /wait.sh
+RUN apt update && apt install netcat -y
+CMD /wait.sh && java -Xmx100M -jar -Dspring.profiles.active=docker /app.jar
 EXPOSE 8080
