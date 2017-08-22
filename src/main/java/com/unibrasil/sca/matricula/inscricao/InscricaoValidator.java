@@ -8,9 +8,10 @@ import java.util.stream.Collectors;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import com.unibrasil.sca.matricula.disciplina.Disciplina;
-import com.unibrasil.sca.matricula.turma.Horario;
-import com.unibrasil.sca.matricula.turma.Turma;
+import com.unibrasil.sca.Disciplina;
+import com.unibrasil.sca.Horario;
+import com.unibrasil.sca.Inscricao;
+import com.unibrasil.sca.Turma;
 
 public class InscricaoValidator implements Validator {
 

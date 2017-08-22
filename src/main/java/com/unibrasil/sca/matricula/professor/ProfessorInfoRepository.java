@@ -5,9 +5,10 @@
  */
 package com.unibrasil.sca.matricula.professor;
 
-import com.unibrasil.sca.matricula.turma.Professor;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+
+import com.unibrasil.sca.Professor;
 
 /**
  *
